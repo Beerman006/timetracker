@@ -1,4 +1,4 @@
-timetracker
+Time Tracker
 ===========
 
-A simple time tracking application
+A simple time tracking application.
