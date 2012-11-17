@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSettings name="Time Tracker Code Coverage" id="ed5bdba2-d354-468b-b81b-f154c69888a8" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description>Provides code coverage metrics for the time tracker assembly.</Description>
+</TestSettings>

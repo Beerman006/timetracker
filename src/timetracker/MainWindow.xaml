@@ -1,0 +1,16 @@
+﻿<Window x:Class="Beerman006.TimeTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pres="clr-namespace:Beerman006.TimeTracker.Presentation"
+        Title="MainWindow" MinWidth="480" MinHeight="150" SizeToContent="WidthAndHeight"
+        DataContext="{StaticResource TimeTrackerViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <GroupBox Header="Enter your time:" Padding="5" Margin="5" Grid.Row="0">
+            <pres:TimeEntry />
+        </GroupBox>
+    </Grid>
+</Window>

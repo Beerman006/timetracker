@@ -1,0 +1,11 @@
+﻿<Application x:Class="Beerman006.Timetracker.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Beerman006.TimeTracker.ViewModel"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <vm:TimeTrackerViewModel x:Key="TimeTrackerViewModel" />
+        <vm:StringHourToDateTimeConverter x:Key="HourToDateTimeConverter" />
+        <vm:HoursAndTenthsToTimeSpanConverter x:Key="HoursAndTenthsToTimeSpanConverter" />
+    </Application.Resources>
+</Application>

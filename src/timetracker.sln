@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timetracker", "timetracker\timetracker.csproj", "{BF031A53-369B-4FF0-B082-A746D4FA66FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{24078A8B-2BAF-4FD3-9604-D159995768E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timetracker.tests", "timetracker.tests\timetracker.tests.csproj", "{A1AEEE38-3633-490B-8223-8CCECAD8E59B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60D2EFA0-EF98-46FD-992C-A541BEA4BC19}"
+	ProjectSection(SolutionItems) = preProject
+		timetracker.testsettings = timetracker.testsettings
+		timetracker.vsmdi = timetracker.vsmdi
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = timetracker.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Debug|x86.ActiveCfg = Debug|x86
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Debug|x86.Build.0 = Debug|x86
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Release|Any CPU.ActiveCfg = Release|x86
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Release|x86.ActiveCfg = Release|x86
+		{BF031A53-369B-4FF0-B082-A746D4FA66FB}.Release|x86.Build.0 = Release|x86
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1AEEE38-3633-490B-8223-8CCECAD8E59B} = {24078A8B-2BAF-4FD3-9604-D159995768E4}
+	EndGlobalSection
+EndGlobal
