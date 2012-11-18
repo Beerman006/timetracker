@@ -31,6 +31,12 @@ namespace Beerman006.TimeTracker.ViewModel
         private string _description;
 
         /// <summary>
+        /// The name of the client.  This is not meant to be used in any way but 
+        /// for updates pushed down from the UI.  
+        /// </summary>
+        private string _clientName;
+
+        /// <summary>
         /// The time the chargable time began.
         /// </summary>
         private DateTime _startTime;
@@ -89,10 +95,27 @@ namespace Beerman006.TimeTracker.ViewModel
         {
             get { return _client; }
             set 
-            {                
+            {
+                if (value == null)
+                {
+                    var client = new Client(ClientName);
+                    Clients.Add(client);
+                    value = client;
+                }
+
                 SetProperty(GetPropertyName(() => Client), ref _client, value);
                 ChargeCode = Client.GetChargeCodeFromWorkType(WorkType);
             }
+        }
+
+        /// <summary>
+        /// Gets and sets the name of the client.  This is not meant to be used in 
+        /// any way but for updates pushed down from the UI.  
+        /// </summary>
+        public string ClientName
+        {
+            get { return _clientName; }
+            set { _clientName = value; }
         }
 
         /// <summary>
@@ -125,9 +148,12 @@ namespace Beerman006.TimeTracker.ViewModel
             get { return _startTime; }
             set 
             {
-                value = new DateTime(CurrentDate.Year, CurrentDate.Month, CurrentDate.Day, value.Hour, value.Minute, value.Second);
-                SetProperty(GetPropertyName(() => StartTime), ref _startTime, value);
-                CalculateTotalTime();
+                if (!TimeIsUnset(value))
+                {
+                    value = new DateTime(CurrentDate.Year, CurrentDate.Month, CurrentDate.Day, value.Hour, value.Minute, value.Second);
+                    SetProperty(GetPropertyName(() => StartTime), ref _startTime, value);
+                    CalculateTotalTime();
+                }
             }
         }
 
@@ -139,9 +165,12 @@ namespace Beerman006.TimeTracker.ViewModel
             get { return _endTime; }
             set 
             {
-                value = new DateTime(CurrentDate.Year, CurrentDate.Month, CurrentDate.Day, value.Hour, value.Minute, value.Second);
-                SetProperty(GetPropertyName(() => EndTime), ref _endTime, value);
-                CalculateTotalTime();
+                if (!TimeIsUnset(value))
+                {
+                    value = new DateTime(CurrentDate.Year, CurrentDate.Month, CurrentDate.Day, value.Hour, value.Minute, value.Second);
+                    SetProperty(GetPropertyName(() => EndTime), ref _endTime, value);
+                    CalculateTotalTime();
+                }
             }
         }
 
@@ -186,7 +215,7 @@ namespace Beerman006.TimeTracker.ViewModel
         /// <returns><c>true</c> if the given time is default - or unset.</returns>
         private bool TimeIsUnset(DateTime time)
         {
-            return time == default(DateTime);
+            return time == DateTime.MinValue;
         }
         #endregion
     }

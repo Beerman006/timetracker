@@ -30,7 +30,9 @@
         
         <Label Grid.Column="0">Client</Label>
         <ComboBox Grid.Column="0" Grid.Row="1" IsEditable="True" IsTextSearchEnabled="True" Width="90"
-                  IsTextSearchCaseSensitive="False" ItemsSource="{Binding Clients}" DisplayMemberPath="Name" SelectedValue="{Binding Client}"/>
+                  IsTextSearchCaseSensitive="False" ItemsSource="{Binding Clients}" DisplayMemberPath="Name" 
+                  SelectedValue="{Binding Client, UpdateSourceTrigger=LostFocus}" 
+                  Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />
 
         <Label Grid.Column="1">Work Type</Label>
         <ComboBox Grid.Column="1" Grid.Row="1" IsEditable="True" IsTextSearchEnabled="True" Width="120"

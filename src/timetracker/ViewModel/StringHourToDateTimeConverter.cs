@@ -22,9 +22,9 @@ namespace Beerman006.TimeTracker.ViewModel
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             DateTime converted;
-            string stringTime = (string)value;
-            var formats = new[] { "t", "%H", "HH", "h tt", "h:m" };
-            var styles = DateTimeStyles.NoCurrentDateDefault;
+            string stringTime = ((string)value).ToUpper(culture);
+            var formats = new[] { "t", "%H", "HH", "htt", "ht", "h:m", "h:mt", "h:mtt" };
+            var styles = DateTimeStyles.NoCurrentDateDefault | DateTimeStyles.AllowWhiteSpaces;
             if (!DateTime.TryParseExact(stringTime, formats, culture, styles, out converted))
             {
                 converted = new DateTime();
