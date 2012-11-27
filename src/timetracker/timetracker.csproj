@@ -41,6 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,12 +61,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Modeling\Client.cs" />
+    <Compile Include="Modeling\TimedDay.cs" />
+    <Compile Include="Modeling\XMLClientManager.cs" />
+    <Compile Include="Modeling\IClientManager.cs" />
+    <Compile Include="Modeling\ITimeEntryManager.cs" />
+    <Compile Include="Modeling\TimeEntry.cs" />
+    <Compile Include="Modeling\XMLTimeEntryManager.cs" />
+    <Compile Include="Presentation\TimedDay.xaml.cs">
+      <DependentUpon>TimedDay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\HoursAndTenthsToTimeSpanConverter.cs" />
     <Compile Include="ViewModel\StringHourToDateTimeConverter.cs" />
     <Compile Include="ViewModel\TimeEntryViewModel.cs" />
-    <Compile Include="ViewModel\TimeTrackerViewModel.cs" />
+    <Compile Include="ViewModel\CurrentDayTimeTracker.cs" />
+    <Compile Include="ViewModel\TimeTrackerCommands.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Page Include="MainWindow.xaml">
+    <Page Include="Presentation\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -73,10 +84,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Presentation\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Presentation\TimedDay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\TimeEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

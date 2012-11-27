@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Beerman006.TimeTracker.ViewModel;
 
 namespace Beerman006.TimeTracker.Presentation
 {
@@ -22,6 +23,7 @@ namespace Beerman006.TimeTracker.Presentation
         public TimeEntry()
         {
             InitializeComponent();
+            InputBindings.Add(new InputBinding(TimeTrackerCommands.AddNewTimeEntryCommand, new KeyGesture(Key.Enter)));
         }
     }
 }

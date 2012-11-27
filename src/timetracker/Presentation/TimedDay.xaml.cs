@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Beerman006.TimeTracker
+namespace Beerman006.TimeTracker.Presentation
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TimedDay.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TimedDay : UserControl
     {
-        public MainWindow()
+        public TimedDay()
         {
             InitializeComponent();
         }

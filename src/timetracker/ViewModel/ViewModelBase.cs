@@ -5,6 +5,8 @@ using System.Text;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Beerman006.TimeTracker.ViewModel
 {
@@ -27,6 +29,16 @@ namespace Beerman006.TimeTracker.ViewModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+        #endregion
+
+        #region Protected Properties
+        /// <summary>
+        /// Gets the <see cref="CommandBinding"/>s this view model knows about.
+        /// </summary>
+        protected virtual IEnumerable<CommandBinding> CommandBindings
+        {
+            get { return Enumerable.Empty<CommandBinding>(); }
         }
         #endregion
 
@@ -67,6 +79,18 @@ namespace Beerman006.TimeTracker.ViewModel
                 throw new ArgumentException("memberExpression", "memberExpression must refer to a property");
             }
             return expression.Member.Name;
+        }
+        #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// Adds the <see cref="CommandBinding"/>s exposed by this view model to the given visual.
+        /// </summary>
+        /// <param name="visual"></param>
+        public virtual void AddCommandBindings(FrameworkElement visual)
+        {
+            visual.CommandBindings.Clear(); 
+            visual.CommandBindings.AddRange(CommandBindings.ToList());
         }
         #endregion
     }

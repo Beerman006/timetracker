@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Beerman006.TimeTracker.Modeling;
+using System.Windows.Input;
 
 namespace Beerman006.TimeTracker.ViewModel
 {
@@ -52,9 +53,9 @@ namespace Beerman006.TimeTracker.ViewModel
         private TimeSpan _totalTime;
 
         /// <summary>
-        /// The available clients.
+        /// The current <see cref="IClientManager"/>.
         /// </summary>
-        private readonly List<Client> _clients = new List<Client>();
+        private readonly IClientManager _clientManager;
         #endregion
 
         #region Constructor
@@ -62,19 +63,10 @@ namespace Beerman006.TimeTracker.ViewModel
         /// Creates a new <see cref="TimeEntryViewModel"/>.
         /// </summary>
         /// <param name="today">The <see cref="DateTime"/> corresponding to this time entry.</param>
-        public TimeEntryViewModel(DateTime today)
+        public TimeEntryViewModel(IClientManager clientManager, DateTime today)
         {
+            _clientManager = clientManager;
             CurrentDate = new DateTime(today.Year, today.Month, today.Day);
-
-            // TODO: this is all dummied for now...
-            var client = new Client("Foo");
-            client.AddWorkType("State", "Foo1");
-            Clients.Add(client);
-
-            client = new Client("Bar", "Bar1");
-            client.AddWorkType("Federal");
-            client.AddWorkType("State", "Bar2");
-            Clients.Add(client);
         }
         #endregion
 
@@ -99,7 +91,7 @@ namespace Beerman006.TimeTracker.ViewModel
                 if (value == null)
                 {
                     var client = new Client(ClientName);
-                    Clients.Add(client);
+                    ClientManager.AddClient(client);
                     value = client;
                 }
 
@@ -188,11 +180,36 @@ namespace Beerman006.TimeTracker.ViewModel
         /// </summary>
         public DateTime CurrentDate { get; private set; }
 
-        // TODO: get this list of clients from some higher level modeling object.
+        /// <summary>
+        /// Gets the <see cref="IClientManager"/>.
+        /// </summary>
+        public IClientManager ClientManager { get { return _clientManager; } }
+
         /// <summary>
         /// Gets the clients to whom time can be charged.
         /// </summary>
-        public ICollection<Client> Clients { get { return _clients; } }
+        public IEnumerable<Client> Clients { get { return ClientManager.Clients; } }
+
+        /// <summary>
+        /// Gets a <see cref="TimeEntry"/> that corresponds to this view model.
+        /// </summary>
+        public TimeEntry TimeEntry
+        {
+            get
+            {
+                return new TimeEntry()
+                {
+                    Client = ClientManager[ClientName],
+                    WorkType = WorkType,
+                    Description = Description,
+                    StartTime = StartTime,
+                    EndTime = EndTime,
+                    TotalTime = TotalTime,
+                    ChargeCode = ChargeCode,
+                    Date = CurrentDate
+                };
+            }
+        }
         #endregion
 
         #region Private Methods

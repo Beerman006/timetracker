@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Beerman006.TimeTracker.Presentation.TimedDay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <DataGrid ItemsSource="{Binding TimeEntries}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Client Name" Binding="{Binding Client.Name}"/>
+                <DataGridComboBoxColumn Header="Work Type" ItemsSource="{Binding Client.WorkTypes}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="StartTime" Binding="{Binding StartTime, Converter={StaticResource HourToDateTimeConverter}}" />
+                <DataGridTextColumn Header="EndTime" Binding="{Binding EndTime, Converter={StaticResource HourToDateTimeConverter}}" />
+                <DataGridTextColumn Header="TotalTime" Binding="{Binding TotalTime, Converter={StaticResource HoursAndTenthsToTimeSpanConverter}}" />
+                <DataGridTextColumn Header="ChargeCode" IsReadOnly="True" Binding="{Binding ChargeCode}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
