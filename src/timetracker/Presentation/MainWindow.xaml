@@ -2,14 +2,69 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:pres="clr-namespace:Beerman006.TimeTracker.Presentation"
+        xmlns:vm="clr-namespace:Beerman006.TimeTracker.ViewModel"
         Title="MainWindow" MinWidth="480" MinHeight="150" SizeToContent="WidthAndHeight">
     <Grid>
+        <Grid.Resources>
+            <Geometry x:Key="NavArrowPath">M 2,18 A 16,16 0 0 1 34,18 A 16,16 0 0 1 2,18 M 8,18 H 28 M 18,8 L 28,18 L 18,28</Geometry>
+            <Style x:Key="NavButtonPath" TargetType="{x:Type Path}">
+                <Setter Property="Data" Value="{StaticResource NavArrowPath}" />
+                <Setter Property="Stroke" Value="LightGray" />
+                <Setter Property="StrokeThickness" Value="2" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=IsMouseOver}" Value="True">
+                        <Setter Property="Stroke" Value="DarkGray" />
+                        <Setter Property="StrokeThickness" Value="3" />
+                    </DataTrigger>                    
+                </Style.Triggers>
+            </Style>
+            
+            <Style x:Key="NavButton" TargetType="{x:Type Button}">
+                <Setter Property="Height" Value="40" />
+                <Setter Property="Width" Value="40" />
+                <Setter Property="Margin" Value="1" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Style.Triggers>
+                    <Trigger Property="Grid.Column" Value="0">
+                        <Setter Property="LayoutTransform">
+                            <Setter.Value>
+                                <RotateTransform Angle="180"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" ToolTip="Yesterday" Style="{StaticResource NavButton}" Command="{x:Static vm:TimeTrackerCommands.GoToPreviousDayCommand}">
+            <Path Style="{StaticResource NavButtonPath}" />
+        </Button>
+        <Button Grid.Column="1" ToolTip="Tomorrow" Style="{StaticResource NavButton}" Command="{x:Static vm:TimeTrackerCommands.GoToNextDayCommand}">
+            <Path Style="{StaticResource NavButtonPath}"/>
+        </Button>
+        <TextBlock Grid.Column="2" Text="{Binding CurrentDate, StringFormat=d}" 
+                   HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="36" 
+                   Foreground="LightGray" Margin="30,0"/>
+
+        <GroupBox Header="Enter your time:" Padding="5" Margin="5" Grid.Row="1" Grid.ColumnSpan="3">
+            <pres:TimeEntry DataContext="{Binding TimeEntryViewModel}" />
+        </GroupBox>
         
-        <GroupBox Header="Enter your time:" Padding="5" Margin="5" Grid.Row="0">
-            <pres:TimeEntry DataContext="{Binding CurrentTimeEntry}" />
+        <GroupBox Header="Current Day:" Padding="5" Margin="5" Grid.Row="2" Grid.ColumnSpan="3">
+            <pres:TimedDay DataContext="{Binding CurrentDay}" />
         </GroupBox>
     </Grid>
 </Window>
