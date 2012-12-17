@@ -39,8 +39,8 @@ namespace Beerman006.TimeTracker.ViewModel
             ClientManager = clientManager;
             TimeEntryManager = timeEntryManager;
 
+            TimeEntryViewModel = new TimeEntryViewModel(clientManager);
             CurrentDate = DateTime.Now;
-            TimeEntryViewModel = new TimeEntryViewModel(clientManager, CurrentDate);
         }
         #endregion
 
@@ -65,7 +65,7 @@ namespace Beerman006.TimeTracker.ViewModel
             {
                 SetProperty("CurrentDate", ref _currentDate, value);
                 CurrentDay = TimeEntryManager[CurrentDate];
-                TimeEntryViewModel = new TimeEntryViewModel(ClientManager, CurrentDate);
+                TimeEntryViewModel.CurrentDate = CurrentDate;
             }
         }
 

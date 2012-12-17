@@ -28,6 +28,9 @@ namespace Beerman006.TimeTracker.Presentation
             InitializeComponent();
             DataContext = viewModel;
             ViewModel.AddCommandBindings(this);
+
+            InputBindings.Add(new InputBinding(TimeTrackerCommands.GoToNextDayCommand, new KeyGesture(Key.N, ModifierKeys.Control)));
+            InputBindings.Add(new InputBinding(TimeTrackerCommands.GoToPreviousDayCommand, new KeyGesture(Key.P, ModifierKeys.Control)));
         }
 
         #region Properties

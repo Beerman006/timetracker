@@ -44,20 +44,22 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0" ToolTip="Yesterday" Style="{StaticResource NavButton}" Command="{x:Static vm:TimeTrackerCommands.GoToPreviousDayCommand}">
+        <Button Grid.Column="0" ToolTip="Yesterday" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Style="{StaticResource NavButton}" Command="{x:Static vm:TimeTrackerCommands.GoToPreviousDayCommand}">
             <Path Style="{StaticResource NavButtonPath}" />
         </Button>
-        <Button Grid.Column="1" ToolTip="Tomorrow" Style="{StaticResource NavButton}" Command="{x:Static vm:TimeTrackerCommands.GoToNextDayCommand}">
-            <Path Style="{StaticResource NavButtonPath}"/>
-        </Button>
-        <TextBlock Grid.Column="2" Text="{Binding CurrentDate, StringFormat=d}" 
+        <TextBlock Grid.Column="1" Text="{Binding CurrentDate, StringFormat=d}" 
                    HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="36" 
-                   Foreground="LightGray" Margin="30,0"/>
+                   Foreground="LightGray" Margin="30,0"/>        
+        <Button Grid.Column="2" ToolTip="Tomorrow" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                Style="{StaticResource NavButton}" Command="{x:Static vm:TimeTrackerCommands.GoToNextDayCommand}">
+            <Path Style="{StaticResource NavButtonPath}"/>
+        </Button>        
 
         <GroupBox Header="Enter your time:" Padding="5" Margin="5" Grid.Row="1" Grid.ColumnSpan="3">
             <pres:TimeEntry DataContext="{Binding TimeEntryViewModel}" />

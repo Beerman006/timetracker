@@ -48,6 +48,11 @@ namespace Beerman006.TimeTracker.ViewModel
         private DateTime _endTime;
 
         /// <summary>
+        /// The date for which we're entering time.
+        /// </summary>
+        private DateTime _currentDate;
+
+        /// <summary>
         /// The total amount of time that was charged.
         /// </summary>
         private TimeSpan _totalTime;
@@ -62,11 +67,9 @@ namespace Beerman006.TimeTracker.ViewModel
         /// <summary>
         /// Creates a new <see cref="TimeEntryViewModel"/>.
         /// </summary>
-        /// <param name="today">The <see cref="DateTime"/> corresponding to this time entry.</param>
-        public TimeEntryViewModel(IClientManager clientManager, DateTime today)
+        public TimeEntryViewModel(IClientManager clientManager)
         {
             _clientManager = clientManager;
-            CurrentDate = new DateTime(today.Year, today.Month, today.Day);
         }
         #endregion
 
@@ -178,7 +181,11 @@ namespace Beerman006.TimeTracker.ViewModel
         /// <summary>
         /// Gets and sets the date of this time entry.
         /// </summary>
-        public DateTime CurrentDate { get; private set; }
+        public DateTime CurrentDate 
+        {
+            get { return _currentDate; }
+            set { _currentDate = new DateTime(value.Year, value.Month, value.Day); }
+        }
 
         /// <summary>
         /// Gets the <see cref="IClientManager"/>.
